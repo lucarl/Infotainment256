@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int speedDataPermissionMagicNumber = 42;
     boolean useSpeedData = false;
 
+    // awdawdawdawdawd
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
