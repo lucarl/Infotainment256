@@ -1,5 +1,4 @@
-package com.semcon.oil.carpoc;
-import android.Manifest;
+package infotainment;
 import android.car.hardware.CarPropertyValue;
 import android.car.hardware.CarSensorEvent;
 import android.car.hardware.CarSensorManager;
@@ -18,6 +17,8 @@ import android.os.Bundle;
 import android.car.*;
 import android.util.Log;
 import android.widget.TextView;
+
+import com.semcon.oil.infotainment.R;
 
 public class MainActivity extends AppCompatActivity {
 

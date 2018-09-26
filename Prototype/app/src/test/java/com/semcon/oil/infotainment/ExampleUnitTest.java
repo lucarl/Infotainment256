@@ -1,4 +1,4 @@
-package com.semcon.oil.carpoc;
+package com.semcon.oil.infotainment;
 
 import org.junit.Test;
 
