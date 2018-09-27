@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 CarSensorEvent.GearData gearData = carSensorEvent.getGearData(null);
 
                 TextView t = findViewById(R.id.mainText);
+                if(t.getLineCount()>25){
+                    t.setText("");
+                }
                 t.append("\nGear data: " + gearData.gear + " at: " + gearData.timestamp);
             }
         };
@@ -72,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                 CarSensorEvent.CarSpeedData speedData = carSensorEvent.getCarSpeedData(null);
 
                 TextView t = findViewById(R.id.mainText);
+                if(t.getLineCount()>25){
+                    t.setText("");
+                }
                 t.append("\nNew speed: " + speedData.carSpeed + " at: " + speedData.timestamp);
             }
         };
@@ -84,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i=0; i < carSensorEvent.intValues.length; i++) {
                     Log.d("CAR", "Ignition state values= " + carSensorEvent.intValues[i]);
                     TextView t = findViewById(R.id.mainText);
+                    if(t.getLineCount()>25){
+                        t.setText("");
+                    }
                     t.append("\nIgnition state: " + carSensorEvent.intValues[i]);
                 }
             }
@@ -200,6 +209,7 @@ VEHICLEPROPERTY_DOOR_LOCK = 0x16200b02
 
             }
         };
+
 
         car = Car.createCar(this, serviceConnection, handler);
         Log.d("CAR", "Car created");
