@@ -1,4 +1,4 @@
-package com.semcon.oil.infotainment;
+package test.model;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class UnitTest {
     @Test
     public void addition_isCorrect() {
         Assert.assertEquals(4, 2 + 2);
