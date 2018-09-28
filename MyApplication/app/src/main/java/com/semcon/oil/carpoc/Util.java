@@ -27,7 +27,7 @@ public class Util {
 
     public static String getRandomColor(List<String> colors) {
 
-        StringBuilder s = new StringBuilder("#");
+        StringBuilder s = new StringBuilder("#FF");
         Random rand = new Random();
 
         for (int i = 0; i < 6; i++) {
