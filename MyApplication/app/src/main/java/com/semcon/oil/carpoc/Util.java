@@ -24,7 +24,6 @@ public class Util {
         colors.add("F");
     }
 
-
     public static String getRandomColor(List<String> colors) {
 
         StringBuilder s = new StringBuilder("#FF");
