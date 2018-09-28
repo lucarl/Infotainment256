@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 CarSensorEvent.GearData gearData = carSensorEvent.getGearData(null);
 
                 TextView t = findViewById(R.id.mainText);
-                // t.append("\nGear data: " + gearData.gear + " at: " + gearData.timestamp);
+                t.append("\nGear data: " + gearData.gear + " at: " + gearData.timestamp);
             }
         };
 
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 CarSensorEvent.CarSpeedData speedData = carSensorEvent.getCarSpeedData(null);
 
                 TextView t = findViewById(R.id.mainText);
-                // t.append("\nNew speed: " + speedData.carSpeed + " at: " + speedData.timestamp);
+                t.append("\nNew speed: " + speedData.carSpeed + " at: " + speedData.timestamp);
             }
         };
 
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i=0; i < carSensorEvent.intValues.length; i++) {
                     Log.d("CAR", "Ignition state values= " + carSensorEvent.intValues[i]);
                     TextView t = findViewById(R.id.mainText);
-                    // t.append("\nIgnition state: " + carSensorEvent.intValues[i]);
+                    t.append("\nIgnition state: " + carSensorEvent.intValues[i]);
                 }
             }
         };
