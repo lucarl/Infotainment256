@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.semcon.oil.infotainment.R;
+
+import infotainment.ctrl.CalculatorController;
+import infotainment.model.Calculator;
+import infotainment.view.CalculatorView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,21 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button addButton = (Button) findViewById(R.id.addButton);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText firstNumEditText = findViewById(R.id.firstNumEditText);
-                EditText secondNumEditText = findViewById(R.id.secondNumEditText);
-                TextView resultTextView = findViewById(R.id.resultTextView);
+        CalculatorView calculatorView = new CalculatorView();
+        Calculator calculator = new Calculator();
+        CalculatorController calculatorController = new CalculatorController(calculatorView, calculator);
 
-                int num1 = Integer.parseInt(firstNumEditText.getText().toString());
-                int num2 = Integer.parseInt(secondNumEditText.getText().toString());
-                int result = num1 + num2;
-
-                resultTextView.setText(result + "");
-            }
-        });
 
     }
 }
