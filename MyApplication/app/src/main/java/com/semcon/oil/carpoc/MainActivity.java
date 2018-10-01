@@ -27,9 +27,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     Car car;
@@ -37,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     ServiceConnection serviceConnection;
     CarSensorManager sensorManager;
     CarHvacManager carHvacManager;
+    CarSensorEvent.CarSpeedData speedData;
+    CarSensorEvent.GearData gearData;
 
     CarSensorManager.OnSensorChangedListener ignitionStateChangedListener;
     CarSensorManager.OnSensorChangedListener testStateChanged;
@@ -54,6 +53,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void updateText() {
+        TextView t = findViewById(R.id.mainText);
+        try {
+            String str = "Speed: " + speedData.carSpeed + "\n" +
+                        "Gear: " + gearData.gear     + "\n";
+            t.setText(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*
         myMonitor = new CarSensorManager.OnSensorChangedListener() {
             @Override
             public void onSensorChanged(CarSensorEvent carSensorEvent) {
@@ -76,19 +87,15 @@ public class MainActivity extends AppCompatActivity {
                 t.append("/nCarRPM: " + rpmData.rpm + " " + rpmData.timestamp);
             }
         };
+        */
 
         Button myBtn = findViewById(R.id.testbutton);
         myBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final List<String> hexColors = new ArrayList<>(16);
-                Util.populateHex(hexColors);
                 final ConstraintLayout cl = findViewById(R.id.cl);
-                // Load initial and final colors.
 
                 ValueAnimator anim = ValueAnimator.ofFloat(0, 1);
-                final String color1 = Util.getRandomColor(hexColors);
-                final String color2 = Util.getRandomColor(hexColors);
 
                 anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -97,29 +104,34 @@ public class MainActivity extends AppCompatActivity {
                         float position = animation.getAnimatedFraction();
 
                         // Apply blended color to the view.
-                        cl.setBackgroundColor(ColorUtils.blendARGB(Color.parseColor(color1), Color.parseColor(color2), position));
+                        cl.setBackgroundColor(ColorUtils.blendARGB(Color.GREEN, Color.RED, position));
                     }
                 });
                 anim.setDuration(5000).start();
             }
         });
-
+        /*
         testStateChanged = new CarSensorManager.OnSensorChangedListener() {
             @Override
             public void onSensorChanged(CarSensorEvent carSensorEvent) {
                 Log.d("CAR", "Speed changed event...");
             }
         };
+        */
 
         gearMonitor = new CarSensorManager.OnSensorChangedListener() {
             @Override
             public void onSensorChanged(CarSensorEvent carSensorEvent) {
                 Log.d("CAR", "Gear data event...");
 
+                gearData = carSensorEvent.getGearData(null);
+                updateText();
+                /*
                 CarSensorEvent.GearData gearData = carSensorEvent.getGearData(null);
 
                 TextView t = findViewById(R.id.mainText);
                 t.append("\nGear data: " + gearData.gear + " at: " + gearData.timestamp);
+                */
             }
         };
 
@@ -128,10 +140,14 @@ public class MainActivity extends AppCompatActivity {
             public void onSensorChanged(CarSensorEvent carSensorEvent) {
                 Log.d("CAR", "Speed event...");
 
+                speedData = carSensorEvent.getCarSpeedData(null);
+                updateText();
+                /*
                 CarSensorEvent.CarSpeedData speedData = carSensorEvent.getCarSpeedData(null);
 
                 TextView t = findViewById(R.id.mainText);
                 t.append("\nNew speed: " + speedData.carSpeed + " at: " + speedData.timestamp);
+                */
             }
         };
 
@@ -244,11 +260,13 @@ VEHICLEPROPERTY_DISPLAY_BRIGHTNESS = 0x11400a01
                         Log.d("CAR", "speedMonitor not registering...");
                     }
 
-                    /* sensorManager.registerListener(myMonitor,
+                    /*
+                    sensorManager.registerListener(myMonitor,
                             CarSensorManager.SENSOR_TYPE_RPM,
                             CarSensorManager.SENSOR_RATE_NORMAL);
                     */
-                    sensorManager.registerListener(testStateChanged, CarSensorManager.SENSOR_TYPE_RPM, CarSensorManager.SENSOR_RATE_NORMAL);
+
+                    // sensorManager.registerListener(testStateChanged, CarSensorManager.SENSOR_TYPE_RPM, CarSensorManager.SENSOR_RATE_NORMAL);
 
                 } catch (CarNotConnectedException e) {
                     e.printStackTrace();
