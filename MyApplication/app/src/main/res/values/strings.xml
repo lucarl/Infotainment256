@@ -2,5 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="go_back">Go Back</string>
     <string name="color">Color</string>
-    <string name="swap">Swap</string>
+    <string name="stats">Stats</string>
+    <string name="options">Options</string>
 </resources>

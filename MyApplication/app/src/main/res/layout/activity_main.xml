@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <Button
-            android:id="@+id/testbutton"
+            android:id="@+id/MainActivity_Btn_color"
             android:layout_width="125dp"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -31,11 +31,23 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <Button
-            android:id="@+id/swap"
+            android:id="@+id/MainActivity_Btn_stats"
             android:layout_width="125dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="@string/swap"
+            android:text="@string/stats"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/MainActivity_Btn_options"
+            android:layout_width="125dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/options"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"

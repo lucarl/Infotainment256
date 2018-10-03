@@ -5,14 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class StatsActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        setContentView(R.layout.activity_options);
 
-        Button goBack = findViewById(R.id.stats_goBack);
+        Button goBack = findViewById(R.id.options_goBack);
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

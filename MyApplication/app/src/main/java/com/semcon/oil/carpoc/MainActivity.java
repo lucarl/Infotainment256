@@ -48,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int speedDataPermissionMagicNumber = 42;
     boolean useSpeedData = false;
 
-    final void launchStatsActivity() {
-        Intent intent = new Intent(this, StatsActivity.class);
+    final void launchActivity(Intent intent) {
         startActivity(intent);
     }
 
@@ -69,12 +68,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Intent IntentStats = new Intent(this, StatsActivity.class);
+        final Intent IntentOptions = new Intent(this, OptionsActivity.class);
 
-        Button clearBtn = findViewById(R.id.swap);
-        clearBtn.setOnClickListener(new View.OnClickListener() {
+        Button statsBtn = findViewById(R.id.MainActivity_Btn_stats);
+        statsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchStatsActivity();
+                launchActivity(IntentStats);
+            }
+        });
+        Button optionsBtn = findViewById(R.id.MainActivity_Btn_options);
+        optionsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchActivity(IntentOptions);
             }
         });
 
@@ -89,13 +97,13 @@ public class MainActivity extends AppCompatActivity {
         };
         */
 
-        Button myBtn = findViewById(R.id.testbutton);
+        Button myBtn = findViewById(R.id.MainActivity_Btn_color);
         myBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ConstraintLayout cl = findViewById(R.id.cl);
 
-                ValueAnimator anim = ValueAnimator.ofFloat(0, 1);
+                final ConstraintLayout cl = findViewById(R.id.cl);
+                final ValueAnimator anim = ValueAnimator.ofFloat(0, 1);
 
                 anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
