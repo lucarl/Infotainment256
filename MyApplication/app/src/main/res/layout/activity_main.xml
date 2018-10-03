@@ -8,9 +8,10 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_width="125dp"
-        android:layout_height="100dp"
+        android:layout_width="175dp"
+        android:layout_height="300dp"
         android:orientation="vertical"
+        android:padding="0dp"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,7 +21,7 @@
 
         <Button
             android:id="@+id/MainActivity_Btn_color"
-            android:layout_width="125dp"
+            android:layout_width="175dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/color"
@@ -32,7 +33,7 @@
 
         <Button
             android:id="@+id/MainActivity_Btn_stats"
-            android:layout_width="125dp"
+            android:layout_width="175dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/stats"
@@ -44,7 +45,7 @@
 
         <Button
             android:id="@+id/MainActivity_Btn_options"
-            android:layout_width="125dp"
+            android:layout_width="175dp"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="@string/options"
