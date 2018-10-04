@@ -4,25 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="infotainment.view.MainActivityView">
+    tools:context="infotainment.view.MainActivity">
 
     <Button
-        android:id="@+id/helloButton"
+        android:id="@+id/startButton"
+        style="@android:style/Widget.Button.Small"
         android:layout_width="87dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Button"
+        android:text="Start"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="175dp" />
+        tools:layout_editor_absoluteY="173dp" />
 
     <TextView
-        android:id="@+id/resultTextView"
+        android:id="@+id/startTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Result"
-        android:textSize="48sp"
-        tools:layout_editor_absoluteX="125dp"
-        tools:layout_editor_absoluteY="72dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Please press start"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155" />
+
+    <Button
+        android:id="@+id/historyButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="History"
+        app:layout_constraintEnd_toStartOf="@+id/statisticsButton"
+        app:layout_constraintHorizontal_bias="0.276"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="415dp" />
+
+    <Button
+        android:id="@+id/statisticsButton"
+        style="@android:style/Widget.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="180dp"
+        android:text="Statistics"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="415dp" />
 </android.support.constraint.ConstraintLayout>

@@ -8,7 +8,7 @@ public class MainActivityModel implements MainActivityContract.Model{
     @Override
     public String getData() {
 
-        return "Hello world";
+        return "Starting";
     }
 
 }
