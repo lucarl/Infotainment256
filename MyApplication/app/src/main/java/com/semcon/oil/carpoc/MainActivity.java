@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         final Intent IntentStats = new Intent(this, StatsActivity.class);
         final Intent IntentOptions = new Intent(this, OptionsActivity.class);
 
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 anim.setDuration(5000).start();
             }
         });
+
         /*
         testStateChanged = new CarSensorManager.OnSensorChangedListener() {
             @Override
@@ -149,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("CAR", "Speed event...");
 
                 speedData = carSensorEvent.getCarSpeedData(null);
+                ConstraintLayout cl = findViewById(R.id.cl);
+                cl.setBackgroundColor(ColorUtils.blendARGB(Color.GREEN, Color.RED,speedData.carSpeed / 300));
                 updateText();
                 /*
                 CarSensorEvent.CarSpeedData speedData = carSensorEvent.getCarSpeedData(null);
@@ -258,12 +262,12 @@ VEHICLEPROPERTY_DISPLAY_BRIGHTNESS = 0x11400a01
 
                     sensorManager.registerListener(gearMonitor,
                             CarSensorManager.SENSOR_TYPE_GEAR,
-                            CarSensorManager.SENSOR_RATE_NORMAL);
+                            CarSensorManager.SENSOR_RATE_UI);
 
                     if (useSpeedData) {
                         sensorManager.registerListener(speedMonitor,
                                 CarSensorManager.SENSOR_TYPE_CAR_SPEED,
-                                CarSensorManager.SENSOR_RATE_NORMAL);
+                                CarSensorManager.SENSOR_RATE_UI);
                     } else {
                         Log.d("CAR", "speedMonitor not registering...");
                     }
