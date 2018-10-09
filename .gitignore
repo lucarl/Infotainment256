@@ -66,3 +66,15 @@ fastlane/readme.md
 
 # build_file_checksum removal
 .idea/caches/build_file_checksum.ser
+
+\.DS_Store
+
+MyApplication/\.idea/caches/build_file_checksums\.ser
+
+Prototype/\.idea/caches/build_file_checksums\.ser
+
+Prototype/build\.gradle
+
+MyApplication/\.idea/misc\.xml
+
+Prototype/\.idea/misc\.xml
