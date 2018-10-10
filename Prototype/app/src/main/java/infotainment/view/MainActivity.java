@@ -18,6 +18,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,8 +52,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private ConstraintLayout Clayout;
     private MainActivityContract.Presenter mPresenter;
 
-    private int ecoLevel = 50;
-    int[] ecoColor;
+    private int ecoLevel = 100;
     int[] RGBcolor1;
     int[] RGBcolor2;
 
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     Handler handler;
     ServiceConnection serviceConnection;
 
+    CarSensorManager.OnSensorChangedListener FuelLevelStateChangeListener;
     CarSensorManager.OnSensorChangedListener RPMStateChangeListener;
     CarSensorManager sensorManager;
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     //CarHvacManager.CarHvacEventCallback carHvacEventCallback;
 
     private static final int speedDataPermissionMagicNumber = 42;
-    boolean useSpeedData = false;
+    boolean useFuelData = false;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -84,10 +85,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
         //sätter standard röd-grön skala
         configureEcoColors(new int[]{255,255,10,10}, new int[]{255,10,255,10});
-
-
-
-
         configureStatisticsButton();
 
         RPMStateChangeListener = new CarSensorManager.OnSensorChangedListener() {
@@ -100,38 +97,58 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
                     Log.d("CAR", "RPM stuff");
 
-                    /*if (rpmData.rpm > 3500.0 && ecoLevel >= 0) {
-                        ecoLevel -= 2;
-                    } else if (rpmData.rpm > 2500.0 && ecoLevel >= 0) {
-                        ecoLevel -= 1;
-                    } else if (rpmData.rpm < 2000.0 && ecoLevel <= 100) {
-                        ecoLevel += 1;
-                    } else if (rpmData.rpm < 1500.0 && ecoLevel <= 100) {
-                        ecoLevel += 2;
-                    }*/
-
-                    updateEcoColor();
-
-
-                    TextView t = resultTextView;
-                    if (t.getLineCount() > 25) {
-                        t.setText("");
+                    if (rpmData.rpm > 3500.0) {
+                        adjustEcoLevel(-2);
+                    } else if (rpmData.rpm > 2500.0) {
+                        adjustEcoLevel(-1);
+                    } else if (rpmData.rpm < 2000.0) {
+                        adjustEcoLevel(1);
+                    } else if (rpmData.rpm < 1500.0) {
+                        adjustEcoLevel(2);
                     }
-                    t.append("\nRPM data: " + rpmData.rpm + " level: " + ecoLevel);
+
+                    if (resultTextView.getLineCount() >= 10) {
+                        String text = resultTextView.getEditableText().toString();
+                        resultTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator"))+1));
+
+                        //t.setText((t.getEditableText().toString().split("\n"))[1]);
+                        //t.getEditableText().delete(0, 28);
+                    }
+                    resultTextView.append("\nRPM data: " + rpmData.rpm + " level: " + ecoLevel);
                 }
             }
         };
 
+        FuelLevelStateChangeListener = new CarSensorManager.OnSensorChangedListener() {
+            @Override
+            public void onSensorChanged(CarSensorEvent carSensorEvent) {
+
+                CarSensorEvent.FuelLevelData fuelData = carSensorEvent.getFuelLevelData(null);
+
+                Log.d("CAR", "Fuel stuff");
+
+                TextView t = resultTextView;
+                if (t.getLineCount() > 25) {
+                    t.setText("");
+                }
+
+                t.append("\nFuel data: " + fuelData.range + " level: " + ecoLevel);
+
+            }
+        };
+
+
+
         // get permissions
-        if (ContextCompat.checkSelfPermission(this, Car.PERMISSION_SPEED)
+        if (ContextCompat.checkSelfPermission(this, Car.PERMISSION_FUEL)
                 != PackageManager.PERMISSION_GRANTED) {
-            Log.d("CAR", "Requesting permission to use speed events.");
+            Log.d("CAR", "Requesting permission to use fuel events.");
             ActivityCompat.requestPermissions(this,
-                    new String[] {Car.PERMISSION_SPEED}, speedDataPermissionMagicNumber);
+                    new String[] {Car.PERMISSION_FUEL}, 38);
         } else {
             // permission already given
-            Log.d("CAR", "Permission available to use speed events.");
-            useSpeedData = true;
+            Log.d("CAR", "Permission available to use fuel events.");
+            useFuelData = true;
         }
 
         serviceConnection = new ServiceConnection() {
@@ -155,6 +172,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
                     sensorManager.registerListener(RPMStateChangeListener,
                             CarSensorManager.SENSOR_TYPE_RPM,
+                            CarSensorManager.SENSOR_RATE_NORMAL);
+
+                    if (useFuelData)
+                        sensorManager.registerListener(FuelLevelStateChangeListener,
+                            CarSensorManager.SENSOR_TYPE_FUEL_LEVEL,
                             CarSensorManager.SENSOR_RATE_NORMAL);
 
                     /*if (useSpeedData) {
@@ -207,29 +229,20 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     }
 
-    private void updateEcoColor(){
+    public void adjustEcoLevel(int change){
+        //clamp the adjusted eco level within the 0-100 range
+        ecoLevel = Math.min(100, (Math.max(0, ecoLevel+=change)));
 
-        int level = ecoLevel;
+        updateEcoColor(ecoLevel);
+    }
 
+    private void updateEcoColor(int level){
 
-
-        double red = (((100.0-level)/100.0)*RGBcolor1[1])+((level/100.0)*RGBcolor2[1]);
-        double green = (((100.0-level)/100.0)*RGBcolor1[2])+((level/100.0)*RGBcolor2[2]);
-        double blue = (((100.0-level)/100.0)*RGBcolor1[3])+((level/100.0)*RGBcolor2[3]);
-
-        Log.d("CAR", "RGB: " + red + " " + green + " " + blue);
-
-
-        /*statisticsButton.setBackgroundColor(Color.argb(
-                255,
-                (((100-level)/100)*(int)RGBcolor1[1])+((level/100)*(int)RGBcolor2[1]),
-                (((100-level)/100)*(int)RGBcolor1[2])+((level/100)*(int)RGBcolor2[2]),
-                (((100-level)/100)*(int)RGBcolor1[3])+((level/100)*(int)RGBcolor2[3])));*/
+        double red = ((100.0-level)/100.0)*RGBcolor1[1]+(level/100.0)*RGBcolor2[1];
+        double green = ((100.0-level)/100.0)*RGBcolor1[2]+(level/100.0)*RGBcolor2[2];
+        double blue = ((100.0-level)/100.0)*RGBcolor1[3]+(level/100.0)*RGBcolor2[3];
 
         statisticsButton.setBackgroundColor(Color.argb(255, (int)red, (int)green, (int)blue));
-
-
-
     }
 
     private void configureEcoColors(int[] RGBvalues1, int[] RGBvalues2){
