@@ -9,7 +9,7 @@ import com.semcon.oil.infotainment.R;
 
 import infotainment.contract.MainActivityContract;
 
-public class StatisticsActivity extends AppCompatActivity implements MainActivityContract.View {
+/*public class StatisticsActivity extends AppCompatActivity implements MainActivityContract.View {
 
     private Button backButton;
 
@@ -45,4 +45,5 @@ public class StatisticsActivity extends AppCompatActivity implements MainActivit
     public void setViewData(String data) {
 
     }
-}
+}*/
+
