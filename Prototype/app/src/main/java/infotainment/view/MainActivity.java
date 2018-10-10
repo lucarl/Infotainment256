@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -60,12 +63,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         helloButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
-
-                mPresenter.onClick(view);
-
+                mPresenter.toggleEcoDriving();
+                Log.d("SKD", "button clicked");
             }
         });
 
+    }
+
+    public void updateBackgroundColor(int startColor, int endColor, float ratio) {
+        ConstraintLayout cl = findViewById(R.id.main_cl);
+        cl.setBackgroundColor(ColorUtils.blendARGB(startColor, endColor, ratio));
+        Log.d("UpdateBG:" , "bg updated.");
     }
 
     private void configureStatisticsButton() {

@@ -13,10 +13,15 @@ public class MainActivityModel implements MainActivityContract.Model{
         startClr = Color.GREEN;
         endClr = Color.RED;
     }
+
     @Override
     public String getData() {
 
         return "Starting";
+    }
+
+    public float getEcoRatio() {
+        return 0.5f;
     }
 
     @Override
