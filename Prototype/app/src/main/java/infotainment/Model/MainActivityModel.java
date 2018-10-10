@@ -2,6 +2,8 @@ package infotainment.Model;
 
 import android.graphics.Color;
 
+import java.util.Random;
+
 import infotainment.contract.MainActivityContract;
 
 public class MainActivityModel implements MainActivityContract.Model{
@@ -16,12 +18,12 @@ public class MainActivityModel implements MainActivityContract.Model{
 
     @Override
     public String getData() {
-
         return "Starting";
     }
 
     public float getEcoRatio() {
-        return 0.5f;
+        Random rand = new Random();
+        return rand.nextFloat();
     }
 
     @Override

@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         helloButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(android.view.View view) {
+                TextView t = findViewById(R.id.startTextView);
+                t.append("\nEco clicked");
                 mPresenter.toggleEcoDriving();
             }
         });
