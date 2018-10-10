@@ -17,7 +17,6 @@ import com.semcon.oil.infotainment.R;
 import infotainment.contract.MainActivityContract;
 import infotainment.presenter.MainActivityPresenter;
 
-
 public class MainActivity extends AppCompatActivity implements MainActivityContract.View{
 
     /*Car car;
@@ -30,8 +29,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private Button helloButton;
     private Button statisticsButton;
     private MainActivityContract.Presenter mPresenter;
-
-
 
     /*CarSensorManager.OnSensorChangedListener ignitionStateChangedListener;
     /* CarSensorManager.OnSensorChangedListener testStateChanged; */
@@ -64,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             @Override
             public void onClick(android.view.View view) {
                 mPresenter.toggleEcoDriving();
-                Log.d("SKD", "button clicked");
             }
         });
 
