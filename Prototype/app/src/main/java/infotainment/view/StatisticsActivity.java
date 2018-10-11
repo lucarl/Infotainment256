@@ -7,9 +7,9 @@ import android.widget.Button;
 
 import com.semcon.oil.infotainment.R;
 
-import infotainment.contract.MainActivityContract;
+import infotainment.contract.StatisticsActivityContract;
 
-/*public class StatisticsActivity extends AppCompatActivity implements MainActivityContract.View {
+public class StatisticsActivity extends AppCompatActivity implements StatisticsActivityContract.View {
 
     private Button backButton;
 
@@ -45,5 +45,5 @@ import infotainment.contract.MainActivityContract;
     public void setViewData(String data) {
 
     }
-}*/
+}
 

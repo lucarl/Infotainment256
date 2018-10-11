@@ -1,9 +1,9 @@
 package infotainment.view;
 
+import android.car.Car;
 import android.car.CarNotConnectedException;
 import android.car.hardware.CarSensorEvent;
 import android.car.hardware.CarSensorManager;
-import android.car.hardware.hvac.CarHvacManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -18,21 +18,17 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import android.car.*;
 
 import com.semcon.oil.infotainment.R;
 
 import java.security.InvalidParameterException;
 
 import infotainment.contract.MainActivityContract;
+import infotainment.contract.StatisticsActivityContract;
 import infotainment.presenter.MainActivityPresenter;
 
 import static android.graphics.Color.parseColor;
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private Button statisticsButton;
     private ConstraintLayout Clayout;
     private MainActivityContract.Presenter mPresenter;
+    private StatisticsActivityContract.Presenter statisticsPresenter;
 
     private int ecoLevel = 100;
     int[] RGBcolor1;
@@ -82,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mPresenter = new MainActivityPresenter(this);
 
         //sätter standard röd-grön skala
         configureEcoColors(new int[]{255,255,10,10}, new int[]{255,10,255,10});
-        configureStatisticsButton();
 
         RPMStateChangeListener = new CarSensorManager.OnSensorChangedListener() {
             @Override
@@ -207,13 +204,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         car.connect();
         Log.d("CAR", "Car connected");
 
-        mPresenter = new MainActivityPresenter(this);
-
     }
 
     @Override
     public void initView() {
 
+        statisticsButton = findViewById(R.id.statisticsButton);
         Clayout=findViewById(R.id.v);
         resultTextView = findViewById(R.id.startTextView);
         helloButton = findViewById(R.id.startButton);
@@ -224,6 +220,14 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
                 mPresenter.onClick(view);
 
+            }
+        });
+
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
             }
         });
 
@@ -262,20 +266,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
             RGBcolor2 = RGBvalues2;
         }
-    }
-
-    private void configureStatisticsButton() {
-
-        statisticsButton = findViewById(R.id.statisticsButton);
-
-        /*statisticsButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, StatisticsActivity.class));
-            }
-        });*/
-
     }
 
     @Override
