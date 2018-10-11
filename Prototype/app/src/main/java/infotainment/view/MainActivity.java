@@ -28,7 +28,6 @@ import com.semcon.oil.infotainment.R;
 import java.security.InvalidParameterException;
 
 import infotainment.contract.MainActivityContract;
-import infotainment.contract.StatisticsActivityContract;
 import infotainment.presenter.MainActivityPresenter;
 
 import static android.graphics.Color.parseColor;
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private Button statisticsButton;
     private ConstraintLayout Clayout;
     private MainActivityContract.Presenter mPresenter;
-    private StatisticsActivityContract.Presenter statisticsPresenter;
 
     private int ecoLevel = 100;
     int[] RGBcolor1;

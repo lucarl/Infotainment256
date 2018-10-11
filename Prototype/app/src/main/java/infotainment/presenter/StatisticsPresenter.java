@@ -1,12 +1,26 @@
 package infotainment.presenter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import infotainment.contract.MainActivityContract;
+import infotainment.Model.StatisticsActivityModel;
+import infotainment.contract.StatisticsActivityContract;
 
-public class StatisticsPresenter extends AppCompatActivity implements MainActivityContract.Presenter{
+public class StatisticsPresenter implements StatisticsActivityContract.Presenter{
 
+    private StatisticsActivityContract.View statisticsView;
+    private StatisticsActivityContract.Model statisticsModel;
+
+    public StatisticsPresenter(StatisticsActivityContract.View view) {
+        statisticsView = view;
+        initPresenter();
+    }
+
+    private void initPresenter() {
+
+        statisticsModel = new StatisticsActivityModel();
+        statisticsView.initView();
+
+    }
 
 
     @Override

@@ -8,9 +8,11 @@ import android.widget.Button;
 import com.semcon.oil.infotainment.R;
 
 import infotainment.contract.StatisticsActivityContract;
+import infotainment.presenter.StatisticsPresenter;
 
 public class StatisticsActivity extends AppCompatActivity implements StatisticsActivityContract.View {
 
+    private StatisticsActivityContract.Presenter statisticsPresenter;
     private Button backButton;
 
     @Override
@@ -18,7 +20,7 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         configureBackButton();
-
+        statisticsPresenter = new StatisticsPresenter(StatisticsActivity.this);
 
     }
 
