@@ -2,8 +2,6 @@ package infotainment.Model;
 
 import android.util.Log;
 
-import java.util.Arrays;
-
 import infotainment.contract.MainActivityContract;
 
 public class MainActivityModel implements MainActivityContract.Model{
