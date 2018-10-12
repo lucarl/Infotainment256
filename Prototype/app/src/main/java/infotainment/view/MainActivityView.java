@@ -35,7 +35,6 @@ public class MainActivityView extends AppCompatActivity implements MainActivityC
     private TextView resultTextView;
     private Button helloButton;
     private MainActivityContract.Presenter mPresenter;
-    logDb db;
 
 
 
@@ -55,9 +54,7 @@ public class MainActivityView extends AppCompatActivity implements MainActivityC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        db = new logDb(new logDbHelper(getApplicationContext()));
-        mPresenter = new MainActivityPresenter(this);
+        mPresenter = new MainActivityPresenter(this, getApplicationContext());
 
     }
 

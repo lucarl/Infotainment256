@@ -7,13 +7,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+import infotainment.Model.db.logDb;
+
 public class DataFilter {
 
     ArrayList<Integer> SamplingList;
     ArrayList<Double> AverageList;
+    logDb db;
 
 
-    public DataFilter() {
+    public DataFilter(logDb db)
+    {
+        this.db = db;
+
         // Short term list
         SamplingList = new ArrayList<>(); //Arrays.asList(1,2,3,4,5)
         // Long term list
@@ -30,7 +36,7 @@ public class DataFilter {
         if (AverageList.size() >= 10) {
             // send average to database
             // external.function(AvgDouble(AverageList));
-            db.insert(new Pair<Character, Double>(c, AvgDouble(AverageList)));
+            db.insert(new Pair<Character, Integer>(c, 3/*AvgDouble(AverageList*/));
             AverageList.clear();
         }
         if (SamplingList.size() >= 10){

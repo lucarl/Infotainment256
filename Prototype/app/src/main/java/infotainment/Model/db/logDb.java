@@ -9,6 +9,7 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+import infotainment.Model.DataFilter;
 import infotainment.contract.logDbContract;
 
 public class logDb extends Thread
@@ -20,7 +21,7 @@ public class logDb extends Thread
     {
         this.helper = helper;
         this.db = this.helper.getWritableDatabase();
-        helper.onUpgrade(this.db, 1, 2);
+        //helper.onUpgrade(this.db, 1, 2);
         this.start();
     }
 
