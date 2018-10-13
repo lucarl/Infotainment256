@@ -19,6 +19,7 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
 
         statisticsModel = new StatisticsActivityModel();
         statisticsView.initView();
+        statisticsView.setGraphData(statisticsModel.getGraph());
 
     }
 

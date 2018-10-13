@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import com.semcon.oil.infotainment.R;
 
 import infotainment.contract.StatisticsActivityContract;
@@ -14,21 +17,30 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
 
     private StatisticsActivityContract.Presenter statisticsPresenter;
     private Button backButton;
+    private GraphView graph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         configureBackButton();
-        statisticsPresenter = new StatisticsPresenter(StatisticsActivity.this);
+        statisticsPresenter = new StatisticsPresenter(this);
 
     }
 
     @Override
     public void initView() {
-
+        graph =  findViewById(R.id.graph);
 
     }
+
+    @Override
+    public void setGraphData(LineGraphSeries<DataPoint> data) {
+
+        graph.addSeries(data);
+
+    }
+
 
     private void configureBackButton() {
 
@@ -43,9 +55,7 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
 
     }
 
-    @Override
-    public void setViewData(String data) {
 
-    }
+
 }
 
