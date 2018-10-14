@@ -33,6 +33,10 @@ android {
     }
 
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 
@@ -47,5 +51,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/classes-full-debug.jar')
+    implementation 'com.facebook.stetho:stetho:1.5.0'
     implementation 'com.jjoe64:graphview:4.2.2'
 }

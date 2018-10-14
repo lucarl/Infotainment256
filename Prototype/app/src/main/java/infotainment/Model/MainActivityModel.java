@@ -10,6 +10,7 @@ public class MainActivityModel implements MainActivityContract.Model{
 
     @Override
     public String getData() {
+        /* test here */
 
         return "Starting";
     }
@@ -74,3 +75,4 @@ public class MainActivityModel implements MainActivityContract.Model{
         return newArr;
     }
 }
+
