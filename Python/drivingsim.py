@@ -39,12 +39,46 @@ def revProcess(env):
             vehicle_data.rpm += 50
             vehicle_data.fuelDistance -= 1 + randExtra
         elif vehicle_data.gear < 5:
-            vehicle_data.rpm = vehicle_data.speed * 100.0 / (vehicle_data.gear + 1)
+            vehicle_data.rpm = vehicle_data.speed * 50.0 / (vehicle_data.gear + 1)
             vehicle_data.gear += 1
             
         vehicle_data.speed = vehicle_data.rpm * vehicle_data.gear / 100.0
 
         yield env.timeout(0.025)
+        
+def randomMotorwayDriving(env):
+    """
+    This process simulate the revving of the engine.
+    """
+    while True:
+    
+        RNGgain = random.randint(0,10)
+        rpmVariation = random.randint(1,100)
+        randomBraking = random.randint(1,1000)
+        brakeVariance = random.randint(-1,2)
+        
+        if randomBraking >= 0 and randomBraking <= 5:
+            vehicle_data.rpm = 2000+brakeVariance*250
+            vehicle_data.gear = 4
+            while vehicle_data.speed > 80 + brakeVariance*10:
+                vehicle_data.speed -= 1
+                
+                 
+        if vehicle_data.rpm < 3000:
+            if RNGgain >= 0 and RNGgain <= 3:
+                vehicle_data.rpm += rpmVariation
+            else:
+                vehicle_data.rpm += rpmVariation
+        elif vehicle_data.gear < 5:
+            vehicle_data.rpm = vehicle_data.speed * 50.0 / (vehicle_data.gear + 1)
+            vehicle_data.gear += 1
+        else:
+            if RNGgain >= 0 and RNGgain <= 5:
+                vehicle_data.rpm -= rpmVariation
+            
+        vehicle_data.speed = vehicle_data.rpm * vehicle_data.gear / 100.0
+
+        yield env.timeout(0.05)
         
 def revProcessTraffic(env):
     """
@@ -78,7 +112,7 @@ def gearReporter(env, api):
     while True:
         
         api.injectInteger(propdb.PROP_GEAR_SELECTION, vehicle_data.gear)
-        yield env.timeout(0.2)
+        yield env.timeout(1.0)
         
 def RPMReporter(env, api):
     """
@@ -116,9 +150,11 @@ if __name__ == '__main__':
     env = simpy.rt.RealtimeEnvironment(factor=1, strict=False)
 
     # create the processes
-    revp = env.process(revProcess(env))
+    #revp = env.process(revProcess(env))
+    mwdrivingp = env.process(randomMotorwayDriving(env))
     rpmp = env.process(RPMReporter(env, api))
     fuelp = env.process(fueldistanceReporter(env, api))
+    gearp = env.process(gearReporter(env, api))
 
     # start simulation and run it for 60 seconds
     env.run(until=60.0)
