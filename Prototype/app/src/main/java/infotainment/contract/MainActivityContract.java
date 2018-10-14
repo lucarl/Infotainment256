@@ -1,5 +1,7 @@
 package infotainment.contract;
 
+import android.widget.TextView;
+
 public interface MainActivityContract {
 
     interface View {
@@ -7,6 +9,7 @@ public interface MainActivityContract {
         void initView();
         void setViewData(String data);
         void setColor(int fargval);
+        TextView getResultTextView();
 
     }
 
