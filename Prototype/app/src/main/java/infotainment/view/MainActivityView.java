@@ -13,14 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.semcon.oil.infotainment.R;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import infotainment.Model.db.logDb;
-import infotainment.Model.db.logDbHelper;
 import infotainment.contract.MainActivityContract;
-import infotainment.contract.logDbContract;
 import infotainment.presenter.MainActivityPresenter;
 
 
