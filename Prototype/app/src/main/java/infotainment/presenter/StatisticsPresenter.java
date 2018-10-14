@@ -1,8 +1,13 @@
 package infotainment.presenter;
 
+import android.util.Pair;
 import android.view.View;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import infotainment.Model.StatisticsActivityModel;
+import infotainment.Model.db.Db;
 import infotainment.contract.StatisticsActivityContract;
 
 public class StatisticsPresenter implements StatisticsActivityContract.Presenter{
@@ -15,11 +20,22 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
         initPresenter();
     }
 
+    private class GenStatsTask extends TimerTask {
+
+        @Override
+        public void run() {
+            statisticsView.clearGraphData();
+            statisticsView.setGraphData(statisticsModel.getGraph());
+
+        }
+    }
+
     private void initPresenter() {
 
         statisticsModel = new StatisticsActivityModel();
         statisticsView.initView();
         statisticsView.setGraphData(statisticsModel.getGraph());
+        new Timer().scheduleAtFixedRate(new GenStatsTask(), 0, 1000);
     }
 
     @Override

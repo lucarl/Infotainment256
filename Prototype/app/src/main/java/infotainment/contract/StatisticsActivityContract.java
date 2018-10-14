@@ -9,13 +9,13 @@ public interface StatisticsActivityContract {
 
         void initView();
         void setGraphData(LineGraphSeries<DataPoint> data);
+        void clearGraphData();
 
     }
 
     interface Model {
 
         LineGraphSeries<DataPoint> getGraph();
-
     }
 
     interface Presenter {

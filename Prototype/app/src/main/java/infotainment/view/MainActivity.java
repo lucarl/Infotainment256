@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPresenter = new MainActivityPresenter(this);
+        mPresenter = new MainActivityPresenter(this, getApplicationContext());
 
         //sätter standard röd-grön skala
         configureEcoColors(new int[]{255,255,10,10}, new int[]{255,10,255,10});

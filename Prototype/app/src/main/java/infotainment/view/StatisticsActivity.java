@@ -38,6 +38,11 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
         graph.addSeries(data);
     }
 
+    public void clearGraphData()
+    {
+        graph.removeAllSeries();
+    }
+
 
     private void configureBackButton() {
 
