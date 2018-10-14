@@ -19,6 +19,7 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
     public MainActivityPresenter(MainActivityContract.View view, Context context) {
 
         new LogDb(context);
+        new RpmGenerator();
         //this.dataFilter = new DataFilter();
         mView = view;
         initPresenter();
@@ -46,6 +47,8 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
         for (Object d : Db.getData(Db.EntryType.RPM, 0)){
             System.out.println(d);
         }
+
+        System.out.println("rnd: " + RpmGenerator.rndInt());
 
         mView.setViewData(data);
 
