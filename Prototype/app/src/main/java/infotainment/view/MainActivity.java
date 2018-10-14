@@ -132,8 +132,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             }
         };
 
-
-
         // get permissions
         if (ContextCompat.checkSelfPermission(this, Car.PERMISSION_FUEL)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -281,7 +279,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         // EditText mEdit = findViewById(R.id.editText);        //presnterar hexvärdet i en given ruta
         // mEdit.setText(colArr[fargVal]);
         cl.setBackgroundColor(parseColor(colArr[fargVal]));
-
 
     }
 }

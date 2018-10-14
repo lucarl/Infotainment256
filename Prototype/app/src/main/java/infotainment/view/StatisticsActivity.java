@@ -25,34 +25,29 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
         setContentView(R.layout.activity_statistics);
         configureBackButton();
         statisticsPresenter = new StatisticsPresenter(this);
-
     }
 
     @Override
     public void initView() {
         graph =  findViewById(R.id.graph);
-
     }
 
     @Override
     public void setGraphData(LineGraphSeries<DataPoint> data) {
 
         graph.addSeries(data);
-
     }
 
 
     private void configureBackButton() {
 
         backButton = findViewById(R.id.backButton);
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
     }
 
 

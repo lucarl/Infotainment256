@@ -8,7 +8,6 @@ public class MainActivityModel implements MainActivityContract.Model{
 
     private int ecoCal;
 
-
     @Override
     public String getData() {
 
@@ -19,16 +18,13 @@ public class MainActivityModel implements MainActivityContract.Model{
     public int getecoCal(){
 
         return ecoCal;
-
     }
 
     @Override
     public void setecoCal(double lambda, double tilt, double [] resArr, double ref){
 
         ecoCal = ecoCal(lambda, tilt, resArr, ref);
-
     }
-
 
     private int ecoCal(double lambda, double tilt, double [] resArr, double ref){
 
@@ -39,20 +35,7 @@ public class MainActivityModel implements MainActivityContract.Model{
 
         int ratio = (int)Math.round((100*(sum(resArr)/resArr.length)/ref)/42);
 
-
-        //////LOGGAR////
-        for(int i=0; i<resArr.length; i++) {
-
-            String numberAsString = Double.toString(resArr[i]);
-            Log.d("Ratio" + i, numberAsString);
-
-        }
-
-        String numberAsString = Double.toString(ratio);
-        Log.d("Ratio", numberAsString);
-
-        //////////////////////////
-
+        ecoLogger(resArr, ratio);
         if(ratio>41){ return 41;
 
         }else if(ratio<0){return 0;}
@@ -61,6 +44,16 @@ public class MainActivityModel implements MainActivityContract.Model{
 
     }
 
+    void ecoLogger(double[] resArr, double ratio) {
+        for(int i=0; i<resArr.length; i++) {
+
+            String numberAsString = Double.toString(resArr[i]);
+            Log.d("Ratio" + i, numberAsString);
+
+        }
+        String numberAsString = Double.toString(ratio);
+        Log.d("Ratio", numberAsString);
+    }
 
     public static double sum(double...values) {
         double result = 0;
@@ -72,20 +65,12 @@ public class MainActivityModel implements MainActivityContract.Model{
     public static double[] updateResarr(double []resArr, double newVal){
 
         double[] newArr = new double[resArr.length];
-
         for(int i = 1; i<resArr.length; i++){
 
             newArr[i-1]=resArr[i];
-
         }
 
         newArr[resArr.length-1] = newVal;
-
         return newArr;
-
-
-
     }
-
-
 }

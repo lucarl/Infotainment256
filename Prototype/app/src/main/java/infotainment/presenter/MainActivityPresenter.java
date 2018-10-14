@@ -1,15 +1,9 @@
 package infotainment.presenter;
 
-import android.view.View;
-
-import com.semcon.oil.infotainment.R;
-
 import java.util.Arrays;
 
 import infotainment.Model.MainActivityModel;
 import infotainment.contract.MainActivityContract;
-
-import static android.graphics.Color.parseColor;
 
 public class MainActivityPresenter implements MainActivityContract.Presenter{
 
@@ -20,7 +14,6 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
 
         mView = view;
         initPresenter();
-
     }
 
     private void initPresenter() {
@@ -28,16 +21,14 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
         mModel = new MainActivityModel();
         mView.initView();
 
-        double resArr[] = new double[10];            //storleken bestämmer hur stor snittet är i ecoCal
-        double ecoPointsRef=36;                      //Ansatt referensvärde
+        double resArr[] = new double[10];   //storleken bestämmer hur stor snittet är i ecoCal
+        double ecoPointsRef=36;             //Ansatt referensvärde
         Arrays.fill(resArr,ecoPointsRef);
-        double lambda=10;                    //  l/100km
+        double lambda=10;                   //  l/100km
         double tilt = 0;                    //grader lutning
 
         mModel.setecoCal(lambda, tilt, resArr, ecoPointsRef);
-
     }
-
 
     @Override
     public void onClick(android.view.View view) {
@@ -46,10 +37,5 @@ public class MainActivityPresenter implements MainActivityContract.Presenter{
         mView.setViewData(data);
 
         mView.setColor(mModel.getecoCal());
-
     }
-
-
-
-
 }
