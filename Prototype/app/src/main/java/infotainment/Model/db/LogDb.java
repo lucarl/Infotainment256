@@ -51,6 +51,7 @@ public class LogDb implements Db
         /* How you want the results sorted in the resulting Cursor */
         String sortOrder = sortByColumn + " DESC";
 
+        /* Query of all items in column descending */
         return  getDbInstance().query(
                 tableName,                  // The table to query
                 null,               // The array of columns to return (pass null to get all)

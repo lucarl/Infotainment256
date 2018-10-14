@@ -65,7 +65,7 @@ public interface Db
 
             case EntryType.ECOSCORE:
                 return LogDb.ecoCursorList(LogDb.query(LogDbContract.ecoEntry.TABLE_NAME,
-                        LogDbContract.rpmEntry.COLUMN_NAME_RPM));
+                        LogDbContract.ecoEntry.COLUMN_NAME_ECOSCORE));
 
             default:
                 throw new IllegalArgumentException("get of value type '" + entryType
