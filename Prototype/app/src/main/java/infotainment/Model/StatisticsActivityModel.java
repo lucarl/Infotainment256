@@ -1,4 +1,4 @@
-package infotainment.Model;
+/* package infotainment.Model;
 
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -22,4 +22,4 @@ public class StatisticsActivityModel implements StatisticsActivityContract.Model
 
     }
 
-}
+} */

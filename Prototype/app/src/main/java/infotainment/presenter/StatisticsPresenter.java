@@ -2,7 +2,7 @@ package infotainment.presenter;
 
 import android.view.View;
 
-import infotainment.Model.StatisticsActivityModel;
+//import infotainment.Model.StatisticsActivityModel;
 import infotainment.contract.StatisticsActivityContract;
 
 public class StatisticsPresenter implements StatisticsActivityContract.Presenter{
@@ -17,9 +17,9 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
 
     private void initPresenter() {
 
-        statisticsModel = new StatisticsActivityModel();
+        /*statisticsModel = new StatisticsActivityModel();
         statisticsView.initView();
-        statisticsView.setGraphData(statisticsModel.getGraph());
+        statisticsView.setGraphData(statisticsModel.getGraph()); */
     }
 
     @Override
