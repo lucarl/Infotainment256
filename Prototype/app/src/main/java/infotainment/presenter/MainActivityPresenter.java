@@ -37,16 +37,11 @@ import infotainment.contract.MainActivityContract;
 
 import static android.graphics.Color.parseColor;
 
-public class MainActivityPresenter extends AppCompatActivity implements MainActivityContract.Presenter{
+public class MainActivityPresenter extends AppCompatActivity implements MainActivityContract.Presenter {
 
     private MainActivityContract.View mView;
     private MainActivityContract.Model mModel;
     private DataFilter dataFilter;
-
-    public MainActivityPresenter(MainActivityContract.View view, Context context) {
-
-        new LogDb(context);
-        //this.dataFilter = new DataFilter();
 
     Car car;
     Handler handler;
@@ -70,89 +65,91 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
         this.context = context;
         mView = view;
         initPresenter();
+        new LogDb(context);
+        //this.dataFilter = new DataFilter();
     }
 
-    private void initPresenter() {
+
+    private void initPresenter () {
 
         mModel = new MainActivityModel();
         mView.initView();
 
         double resArr[] = new double[10];   //storleken bestämmer hur stor snittet är i ecoCal
-        double ecoPointsRef=36;             //Ansatt referensvärde
-        Arrays.fill(resArr,ecoPointsRef);
-        double lambda=10;                   //  l/100km
+        double ecoPointsRef = 36;             //Ansatt referensvärde
+        Arrays.fill(resArr, ecoPointsRef);
+        double lambda = 10;                   //  l/100km
         double tilt = 0;                    //grader lutning
 
         mModel.setecoCal(lambda, tilt, resArr, ecoPointsRef);
 
         RPMStateChangeListener = new CarSensorManager.OnSensorChangedListener() {
-            @Override
-            public void onSensorChanged(CarSensorEvent carSensorEvent) {
+                @Override
+                public void onSensorChanged(CarSensorEvent carSensorEvent) {
+                    CarSensorEvent.RpmData rpmData = carSensorEvent.getRpmData(null);
 
-                CarSensorEvent.RpmData rpmData = carSensorEvent.getRpmData(null);
+                    if (rpmData.rpm != 0.0) {
 
-                if(rpmData.rpm!=0.0) {
+                        Date currentTime = Calendar.getInstance().getTime();
 
-                    Date currentTime = Calendar.getInstance().getTime();
+                        Log.d("CAR", "RPM stuff " + currentTime);
 
-                    Log.d("CAR", "RPM stuff " + currentTime);
+                        //------------->PUT EVENT HANDLING FOR RPM HERE<-------------
 
-                    //------------->PUT EVENT HANDLING FOR RPM HERE<-------------
+                        TextView logTextView = mView.getResultTextView();
+
+                        if (logTextView.getLineCount() >= 10) {
+                            String text = logTextView.getEditableText().toString();
+                            logTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator")) + 1));
+                        }
+
+                        logTextView.append("\nRPM data: " + rpmData.rpm);
+                    }
+                }
+        };
+
+        gearMonitor = new CarSensorManager.OnSensorChangedListener() {
+                @Override
+                public void onSensorChanged(CarSensorEvent carSensorEvent) {
+                    Log.d("CAR", "Gear data event...");
+
+                    CarSensorEvent.GearData gearData = carSensorEvent.getGearData(null);
+
+                    //------------->PUT STATE HANDLING FOR GEAR HERE<-------------
 
                     TextView logTextView = mView.getResultTextView();
 
                     if (logTextView.getLineCount() >= 10) {
                         String text = logTextView.getEditableText().toString();
-                        logTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator"))+1));
+                        logTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator")) + 1));
                     }
 
-                    logTextView.append("\nRPM data: " + rpmData.rpm);
+                    logTextView.append("\nGear data: " + gearData.gear);
                 }
-            }
-        };
-
-        gearMonitor = new CarSensorManager.OnSensorChangedListener() {
-            @Override
-            public void onSensorChanged(CarSensorEvent carSensorEvent) {
-                Log.d("CAR", "Gear data event...");
-
-                CarSensorEvent.GearData gearData = carSensorEvent.getGearData(null);
-
-                //------------->PUT STATE HANDLING FOR GEAR HERE<-------------
-
-                TextView logTextView = mView.getResultTextView();
-
-                if (logTextView.getLineCount() >= 10) {
-                    String text = logTextView.getEditableText().toString();
-                    logTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator"))+1));
-                }
-
-                logTextView.append("\nGear data: " + gearData.gear);
-            }
         };
 
         FuelLevelStateChangeListener = new CarSensorManager.OnSensorChangedListener() {
-            @Override
-            public void onSensorChanged(CarSensorEvent carSensorEvent) {
+                @Override
+                public void onSensorChanged(CarSensorEvent carSensorEvent) {
 
-                CarSensorEvent.FuelLevelData fuelData = carSensorEvent.getFuelLevelData(null);
+                    CarSensorEvent.FuelLevelData fuelData = carSensorEvent.getFuelLevelData(null);
 
-                Log.d("CAR", "Fuel stuff");
+                    Log.d("CAR", "Fuel stuff");
 
-                //------------->PUT EVENT HANDLING FOR FUEL HERE<-------------
+                    //------------->PUT EVENT HANDLING FOR FUEL HERE<-------------
 
-                TextView logTextView = mView.getResultTextView();
+                    TextView logTextView = mView.getResultTextView();
 
-                if (logTextView.getLineCount() >= 10) {
-                    String text = logTextView.getEditableText().toString();
-                    logTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator"))+1));
+                    if (logTextView.getLineCount() >= 10) {
+                        String text = logTextView.getEditableText().toString();
+                        logTextView.setText(text.substring(text.indexOf(System.getProperty("line.separator")) + 1));
+                    }
+
+                    logTextView.append("\nRPM data: " + fuelData.range);
                 }
-
-                logTextView.append("\nRPM data: " + fuelData.range);
-            }
         };
 
-        // get permissions
+            // get permissions
         /*
         if (ContextCompat.checkSelfPermission(context, Car.PERMISSION_FUEL)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -178,40 +175,40 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
         }*/
 
         serviceConnection = new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-                Log.d("CAR", "Service connected");
+                @Override
+                public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+                    Log.d("CAR", "Service connected");
 
-                try {
-                    // connect
-                    sensorManager = (CarSensorManager) car.getCarManager(Car.SENSOR_SERVICE);
-                    //carHvacManager = (CarHvacManager) car.getCarManager(Car.HVAC_SERVICE);
+                    try {
+                        // connect
+                        sensorManager = (CarSensorManager) car.getCarManager(Car.SENSOR_SERVICE);
+                        //carHvacManager = (CarHvacManager) car.getCarManager(Car.HVAC_SERVICE);
 
-                    // report connections
-                    if (sensorManager != null)
-                        Log.d("CAR","Sensor manager received connected");
+                        // report connections
+                        if (sensorManager != null)
+                            Log.d("CAR", "Sensor manager received connected");
                     /*if (carHvacManager != null)
                         Log.d("CAR", "HVAC manager received connected");
                     */
 
-                    // hook up handlers
-                    //carHvacManager.registerCallback(carHvacEventCallback);
+                        // hook up handlers
+                        //carHvacManager.registerCallback(carHvacEventCallback);
 
-                    sensorManager.registerListener(RPMStateChangeListener,
-                            CarSensorManager.SENSOR_TYPE_RPM,
-                            CarSensorManager.SENSOR_RATE_NORMAL);
+                        sensorManager.registerListener(RPMStateChangeListener,
+                                CarSensorManager.SENSOR_TYPE_RPM,
+                                CarSensorManager.SENSOR_RATE_NORMAL);
 
                     /*sensorManager.registerListener(gearMonitor,
                             CarSensorManager.SENSOR_TYPE_GEAR,
                             CarSensorManager.SENSOR_RATE_NORMAL);*/
 
-                    //check for permission to use fuel data
-                    if (useFuelData)
-                        sensorManager.registerListener(FuelLevelStateChangeListener,
-                                CarSensorManager.SENSOR_TYPE_FUEL_LEVEL,
-                                CarSensorManager.SENSOR_RATE_NORMAL);
+                        //check for permission to use fuel data
+                        if (useFuelData)
+                            sensorManager.registerListener(FuelLevelStateChangeListener,
+                                    CarSensorManager.SENSOR_TYPE_FUEL_LEVEL,
+                                    CarSensorManager.SENSOR_RATE_NORMAL);
 
-                    //check for permission to use speed data
+                        //check for permission to use speed data
                     /*if (useSpeedData) {
                         sensorManager.registerListener(speedMonitor,
                                 CarSensorManager.SENSOR_TYPE_CAR_SPEED,
@@ -220,16 +217,16 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
                         Log.d("CAR", "speedMonitor not registering...");
                     }*/
 
-                } catch (CarNotConnectedException e) {
-                    e.printStackTrace();
+                    } catch (CarNotConnectedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-            @Override
-            public void onServiceDisconnected(ComponentName componentName) {
-                Log.d("CAR", "Service disconnected");
+                @Override
+                public void onServiceDisconnected(ComponentName componentName) {
+                    Log.d("CAR", "Service disconnected");
 
-            }
+                }
         };
 
         car = Car.createCar(context, serviceConnection, handler);
@@ -240,11 +237,11 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
     }
 
     @Override
-    public void onClick(android.view.View view) {
+    public void onClick (android.view.View view){
 
         String data = mModel.getData();
 
-        for (Object d : Db.getData(Db.EntryType.RPM, 0)){
+        for (Object d : Db.getData(Db.EntryType.RPM, 0)) {
             System.out.println(d);
         }
 
@@ -252,5 +249,5 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
 
         mView.setColor(mModel.getecoCal());
     }
-    
+
 }
