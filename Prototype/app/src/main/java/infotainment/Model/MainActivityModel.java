@@ -70,7 +70,6 @@ public class MainActivityModel implements MainActivityContract.Model{
 
             newArr[i-1]=resArr[i];
         }
-
         newArr[resArr.length-1] = newVal;
         return newArr;
     }

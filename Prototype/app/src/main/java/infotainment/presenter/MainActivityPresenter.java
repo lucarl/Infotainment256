@@ -1,41 +1,27 @@
 package infotainment.presenter;
 
-import android.app.Activity;
 import android.car.Car;
 import android.car.CarNotConnectedException;
 import android.car.hardware.CarSensorEvent;
 import android.car.hardware.CarSensorManager;
-import android.car.hardware.hvac.CarHvacManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
-
-import com.semcon.oil.infotainment.R;
 
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-
-import android.content.Context;
 
 import infotainment.Model.DataFilter;
 import infotainment.Model.MainActivityModel;
 import infotainment.Model.db.Db;
 import infotainment.Model.db.LogDb;
 import infotainment.contract.MainActivityContract;
-
-import static android.graphics.Color.parseColor;
 
 public class MainActivityPresenter extends AppCompatActivity implements MainActivityContract.Presenter {
 
@@ -68,7 +54,6 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
         new LogDb(context);
         //this.dataFilter = new DataFilter();
     }
-
 
     private void initPresenter () {
 
@@ -246,7 +231,6 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
         }
 
         mView.setViewData(data);
-
         mView.setColor(mModel.getecoCal());
     }
 

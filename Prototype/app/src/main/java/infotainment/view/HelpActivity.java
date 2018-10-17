@@ -11,7 +11,6 @@ public class HelpActivity extends AppCompatActivity {
 
     private Button backButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +27,5 @@ public class HelpActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
     }
 }

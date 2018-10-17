@@ -91,14 +91,23 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         });
     }
 
+    private void configureOptionsButton() {
 
+        statisticsButton = findViewById(R.id.optionsButton);
 
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, OptionsActivity.class));
+            }
+        });
+    }
 
     @Override
     public void setViewData(String data) {
         statisticsButton = findViewById(R.id.helpButton);
-        Clayout=findViewById(R.id.v);
+        Clayout = findViewById(R.id.v);
         resultTextView = findViewById(R.id.startTextView);
         helloButton = findViewById(R.id.startButton);
         resultTextView.setText(data);
@@ -116,14 +125,17 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             }
         });
 
-        String[] colArr = {"#66ff33","#6eff30","#75ff2e","#7dff2b","#85ff29","#8cff26","#94ff24","#9cff21","#a3ff1f","#abff1c","#b2ff1a","#baff17","#c2ff14","#c9ff12","#d1ff0f","#d9ff0d","#e0ff0a","#e8ff08","#f0ff05","#f7ff03","#ffff00","#ffff66","#fff261","#ffe65c","#ffd957","#ffcc52","#ffbf4c","#ffb247","#ffa642","#ff993d","#ff8c38","#ff8033","#ff732e","#ff6629","#ff5924","#ff4d1f","#ff401a","#ff3314","#ff260f","#ff190a","#ff0d05","#ff0000"};
+        String[] colArr = {"#66ff33","#6eff30","#75ff2e","#7dff2b","#85ff29","#8cff26","#94ff24",
+        "#9cff21","#a3ff1f","#abff1c","#b2ff1a","#baff17","#c2ff14","#c9ff12","#d1ff0f","#d9ff0d",
+        "#e0ff0a","#e8ff08","#f0ff05","#f7ff03","#ffff00","#ffff66","#fff261","#ffe65c","#ffd957",
+        "#ffcc52","#ffbf4c","#ffb247","#ffa642","#ff993d","#ff8c38","#ff8033","#ff732e","#ff6629",
+        "#ff5924","#ff4d1f","#ff401a","#ff3314","#ff260f","#ff190a","#ff0d05","#ff0000"};
         // EditText mEdit = findViewById(R.id.editText);        //presnterar hexvärdet i en given ruta
         // mEdit.setText(colArr[fargVal]);
         cl.setBackgroundColor(parseColor(colArr[fargVal]));
     }
 
     /*
-
     --Funktioner för att uppdatera backgrundsfärg efter en gradient--
 
     public void adjustEcoLevel(int change){
