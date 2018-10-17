@@ -1,20 +1,11 @@
 package infotainment.view;
 
-import android.car.Car;
-import android.car.CarNotConnectedException;
-import android.car.hardware.CarSensorEvent;
-import android.car.hardware.CarSensorManager;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private Button statisticsButton;
     private ConstraintLayout Clayout;
     private MainActivityContract.Presenter mPresenter;
+    private Button helpButton;
 
     /*
     //Värden för programmets bakgrundsfärg
@@ -50,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         mPresenter = new MainActivityPresenter(this, this);
         //configureEcoColors(new int[]{255,255,10,10}, new int[]{255,10,255,10});
         configureStatisticsButton();
+        configureHelpButton();
     }
 
     @Override
@@ -58,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         Clayout=findViewById(R.id.v);
         resultTextView = findViewById(R.id.startTextView);
         helloButton = findViewById(R.id.startButton);
+        helpButton = findViewById(R.id.helpButton);
 
         helloButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +78,26 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         });
     }
 
+    private void configureHelpButton() {
+
+        statisticsButton = findViewById(R.id.helpButton);
+
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, HelpActivity.class));
+            }
+        });
+    }
+
+
+
+
+
     @Override
     public void setViewData(String data) {
-        statisticsButton = findViewById(R.id.statisticsButton);
+        statisticsButton = findViewById(R.id.helpButton);
         Clayout=findViewById(R.id.v);
         resultTextView = findViewById(R.id.startTextView);
         helloButton = findViewById(R.id.startButton);
