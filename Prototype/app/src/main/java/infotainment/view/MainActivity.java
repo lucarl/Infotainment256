@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.semcon.oil.infotainment.R;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private TextView resultTextView;
     private Button helloButton;
     private Button statisticsButton;
+    private static boolean colorBlindMode = true;
     private ConstraintLayout Clayout;
     private MainActivityContract.Presenter mPresenter;
     private Button helpButton;
@@ -69,7 +72,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private void configureStatisticsButton() {
 
         statisticsButton = findViewById(R.id.statisticsButton);
-
         statisticsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -82,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private void configureHelpButton() {
 
         statisticsButton = findViewById(R.id.helpButton);
-
         statisticsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -95,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private void configureOptionsButton() {
 
         statisticsButton = findViewById(R.id.optionsButton);
-
         statisticsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -114,12 +114,23 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         resultTextView.setText(data);
     }
 
+    static void toggleColorBlindMode() {
+        colorBlindMode = !colorBlindMode;
+        Log.d("skdLog", "" + colorBlindMode);
+    }
+
     public void setColor(int fargVal){
 
         final View cl = findViewById(R.id.v);
+        final ImageView iv = findViewById(R.id.MainActivity_iv_colorblindmode);
+        if (colorBlindMode) {
+            // TODO change image based on input / delta.
+            iv.setVisibility(ImageView.VISIBLE);
+        } else {
+            iv.setVisibility(ImageView.INVISIBLE);
+        }
 
         statisticsButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, StatisticsActivity.class));

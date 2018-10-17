@@ -2,10 +2,13 @@ package infotainment.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.semcon.oil.infotainment.R;
+
+import infotainment.presenter.MainActivityPresenter;
 
 public class OptionsActivity extends AppCompatActivity {
 
@@ -22,7 +25,8 @@ public class OptionsActivity extends AppCompatActivity {
         cbButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Implement some way to toggle colorblind symbols on / off.
+                MainActivity.toggleColorBlindMode();
+                Log.d("OptionsMen", "toggled colorblind mode");
             }
         });
     }

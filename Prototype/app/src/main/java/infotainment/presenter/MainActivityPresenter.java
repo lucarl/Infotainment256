@@ -224,14 +224,15 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
     @Override
     public void onClick (android.view.View view){
 
+        /*
         String data = mModel.getData();
 
         for (Object d : Db.getData(Db.EntryType.RPM, 0)) {
             System.out.println(d);
         }
+        */
 
-        mView.setViewData(data);
+        mView.setViewData(mModel.getData());
         mView.setColor(mModel.getecoCal());
     }
-
 }

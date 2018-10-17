@@ -10,7 +10,6 @@ public interface MainActivityContract {
         void setViewData(String data);
         void setColor(int fargval);
         TextView getResultTextView();
-
     }
 
     interface Model {
@@ -18,7 +17,6 @@ public interface MainActivityContract {
         String getData();
         void setecoCal(double lambda, double tilt, double [] resArr, double ref);
         int getecoCal();
-
     }
 
     interface Presenter {
