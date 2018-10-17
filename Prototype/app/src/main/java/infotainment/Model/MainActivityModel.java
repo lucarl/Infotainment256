@@ -32,7 +32,8 @@ public class MainActivityModel implements MainActivityContract.Model{
         double res;
 
         res = Math.pow(Math.cos(Math.toRadians(tilt)),1.5) * Math.pow(lambda,2);
-        resArr = updateResarr(resArr, res);     //Uppdaterar resultatarrayen med nya värdet
+        // Uppdaterar resultatarrayen med nya värdet
+        resArr = updateResarr(resArr, res);
 
         int ratio = (int)Math.round((100*(sum(resArr)/resArr.length)/ref)/42);
 

@@ -38,7 +38,6 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
         graph.addSeries(data);
     }
 
-
     private void configureBackButton() {
 
         backButton = findViewById(R.id.backButton);
@@ -49,8 +48,5 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
             }
         });
     }
-
-
-
 }
 

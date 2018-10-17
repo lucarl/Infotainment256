@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         //configureEcoColors(new int[]{255,255,10,10}, new int[]{255,10,255,10});
         configureStatisticsButton();
         configureHelpButton();
+        configureOptionsButton();
     }
 
     @Override
