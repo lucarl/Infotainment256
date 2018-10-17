@@ -18,14 +18,17 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
 import com.semcon.oil.infotainment.R;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import android.content.Context;
 
@@ -33,6 +36,7 @@ import infotainment.Model.DataFilter;
 import infotainment.Model.MainActivityModel;
 import infotainment.Model.db.Db;
 import infotainment.Model.db.LogDb;
+import infotainment.contract.LogDbContract;
 import infotainment.contract.MainActivityContract;
 
 import static android.graphics.Color.parseColor;
@@ -241,7 +245,7 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
 
         String data = mModel.getData();
 
-        for (Object d : Db.getData(Db.EntryType.RPM, 0)) {
+        for (Object d : Db.getData(Db.EntryType.RPM, Db.cTimeMinusMinutes(1))) {
             System.out.println(d);
         }
 
@@ -249,5 +253,4 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
 
         mView.setColor(mModel.getecoCal());
     }
-
 }

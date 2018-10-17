@@ -6,6 +6,7 @@ import android.provider.BaseColumns;
  */
 public final class LogDbContract
 {
+
     private LogDbContract() {}
 
     /** Table 'rpm' for RPM data entry
