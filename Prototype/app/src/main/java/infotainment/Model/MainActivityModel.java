@@ -22,6 +22,11 @@ public class MainActivityModel implements MainActivityContract.Model{
     }
 
     @Override
+    public void dataInput(Character c, int d) {
+        
+    }
+
+    @Override
     public void setecoCal(double lambda, double tilt, double [] resArr, double ref){
 
         ecoCal = ecoCal(lambda, tilt, resArr, ref);

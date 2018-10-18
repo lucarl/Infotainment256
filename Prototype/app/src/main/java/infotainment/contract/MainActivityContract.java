@@ -18,6 +18,8 @@ public interface MainActivityContract {
         String getData();
         void setecoCal(double lambda, double tilt, double [] resArr, double ref);
         int getecoCal();
+        void dataInput(Character c, int d);
+            /* c is data tag and d is raw data */
 
     }
 
