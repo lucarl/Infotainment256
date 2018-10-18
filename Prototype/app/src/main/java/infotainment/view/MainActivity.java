@@ -140,10 +140,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             iv.setVisibility(ImageView.VISIBLE);
             // if the resulting color is in the lower 33%
             if (fargVal < (colArr.length / 3)) {
-                iv.setImageResource(R.drawable.red_thumb);
+                iv.setImageResource(R.drawable.green_thumb);
                 // else if in upper 33%
             } else if (fargVal > (colArr.length * 0.66)) {
-                iv.setImageResource(R.drawable.green_thumb);
+                iv.setImageResource(R.drawable.red_thumb);
             } else {
                 // finally if between 33% - 66%
                 iv.setImageResource(R.drawable.yellow_thumb);
