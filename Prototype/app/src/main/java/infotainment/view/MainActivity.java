@@ -1,11 +1,8 @@
 package infotainment.view;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -16,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.semcon.oil.infotainment.R;
-
-import java.util.Random;
 
 import infotainment.contract.MainActivityContract;
 import infotainment.presenter.MainActivityPresenter;
@@ -34,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     private ConstraintLayout Clayout;
     private MainActivityContract.Presenter mPresenter;
     private Button helpButton;
+    private Button optionsButton;
 
     /*
     //Värden för programmets bakgrundsfärg
@@ -88,8 +84,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private void configureHelpButton() {
 
-        statisticsButton = findViewById(R.id.helpButton);
-        statisticsButton.setOnClickListener(new View.OnClickListener() {
+        helpButton = findViewById(R.id.helpButton);
+        helpButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -100,8 +96,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     private void configureOptionsButton() {
 
-        statisticsButton = findViewById(R.id.optionsButton);
-        statisticsButton.setOnClickListener(new View.OnClickListener() {
+        optionsButton = findViewById(R.id.optionsButton);
+        optionsButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
