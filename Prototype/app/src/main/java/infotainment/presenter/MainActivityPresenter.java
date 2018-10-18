@@ -22,6 +22,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import infotainment.Model.DataFilter;
 import infotainment.Model.MainActivityModel;
@@ -53,6 +55,16 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
     private static final int speedDataPermissionMagicNumber = 42;
     private Context context;
 
+    double resArr[] = new double[10];   //storleken bestämmer hur stor snittet är i ecoCal
+    double ecoPointsRef;
+    double lambda;
+    double tilt;
+
+    int testSpeed = 10;
+    int testGear = 1;
+    int testRPM = 1000;
+    int variation = 1;
+
     public MainActivityPresenter(MainActivityContract.View view, Context context) {
 
         this.context = context;
@@ -62,18 +74,81 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
         //this.dataFilter = new DataFilter();
     }
 
+    private void testUpdater(){
+        mModel.setecoCal(lambda, tilt, resArr, ecoPointsRef);
+        mView.setColor(mModel.getecoCal());
+    }
+
     private void initPresenter () {
 
         mModel = new MainActivityModel();
         mView.initView();
 
-        double resArr[] = new double[10];   //storleken bestämmer hur stor snittet är i ecoCal
-        double ecoPointsRef = 36;             //Ansatt referensvärde
+        this.ecoPointsRef = 36;             //Ansatt referensvärde
         Arrays.fill(resArr, ecoPointsRef);
-        double lambda = 10;                   //  l/100km
-        double tilt = 0;                    //grader lutning
+        this.lambda = 10;                   //  l/100km
+        this.tilt = 0;                    //grader lutning
 
         mModel.setecoCal(lambda, tilt, resArr, ecoPointsRef);
+
+        Timer timer = new Timer();
+        TimerTask myTask = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        //random minor braking
+                        if(Math.random()*40 <= 1){
+                            if(testGear != 1){
+                                testGear -= 1;
+                            }
+                            testRPM = testRPM/2;
+                        }
+
+                        //randomly generate positive or negative tilt
+                        if(Math.random()*5 <= 1){
+                            //keep values within -15 to 15 range
+                            tilt = Math.max(-15, (Math.min(15, tilt + Math.random()*0.3 - Math.random()*0.3)));
+                        }
+
+                        //accelerate with minor variation til we reach acceptable highway speed
+                        if (testRPM < 3000){
+                            testRPM += 100+Math.random()*100;
+                            lambda = Math.max(0, Math.min(100, lambda + Math.random()*3 - Math.random()*3));
+                        } else if (testGear < 5){
+                            testRPM = testSpeed*100 / testGear+1;
+                            testGear += 1;
+                            lambda = Math.max(0, Math.min(100, lambda + Math.random()*1 - Math.random()*3));
+                        }
+
+                        if(lambda>30){
+                            variation = 2;
+                        } else {
+                            variation = 1;
+                        }
+
+                        lambda = Math.max(0, Math.min(100, lambda + Math.random()*5 - Math.random()*3*variation));
+
+
+                        testSpeed = testRPM*testGear / 120;
+
+                        System.out.println("-----TEST-----");
+                        System.out.println("Speed is: " + testSpeed);
+                        System.out.println("Gear is: " + testGear);
+                        System.out.println("RPM is: " + testRPM);
+                        System.out.println("Current lamdba is: " + lambda);
+                        System.out.println("Current tilt is: " + tilt);
+
+                        testUpdater();
+                    }
+                });
+            }
+        };
+
+        timer.schedule(myTask, 2000, 250);
 
         RPMStateChangeListener = new CarSensorManager.OnSensorChangedListener() {
                 @Override
