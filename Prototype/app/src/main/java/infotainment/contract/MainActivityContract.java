@@ -1,6 +1,10 @@
 package infotainment.contract;
 
+import android.util.Pair;
 import android.widget.TextView;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 public interface MainActivityContract {
 
@@ -27,5 +31,6 @@ public interface MainActivityContract {
         void onClick(android.view.View view);
 
     }
+
 
 }

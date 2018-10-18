@@ -1,17 +1,26 @@
 package infotainment.Model;
 
-import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
+import android.util.Pair;
 
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import infotainment.Model.db.Db;
+import infotainment.contract.LogDbContract;
 import infotainment.contract.StatisticsActivityContract;
 
 public class StatisticsActivityModel implements StatisticsActivityContract.Model {
 
 
-    @Override
-    public LineGraphSeries<DataPoint> getGraph() {
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+    public BarGraphSeries<DataPoint> getGraph1() {
+
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
                 new DataPoint(0, 1),
                 new DataPoint(1, 5),
                 new DataPoint(2, 3),
@@ -20,6 +29,18 @@ public class StatisticsActivityModel implements StatisticsActivityContract.Model
         });
         return series;
 
+    }
+
+    public BarGraphSeries<DataPoint> getGraph()
+    {
+        List<Pair<Integer, LocalDateTime>> inList = Db.getData(Db.EntryType.RPM, Db.cTimeMinusMinutes(1));
+        DataPoint[] dp = new DataPoint[inList.size()];
+
+        int i = 0;
+        for (Pair<Integer, LocalDateTime> p : inList)
+            dp[i++] = new DataPoint(i, p.first);
+
+        return new BarGraphSeries<>(dp);
     }
 
 }

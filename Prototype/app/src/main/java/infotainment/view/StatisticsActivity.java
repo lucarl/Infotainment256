@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.semcon.oil.infotainment.R;
@@ -33,8 +34,10 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
     }
 
     @Override
-    public void setGraphData(LineGraphSeries<DataPoint> data) {
+    public void setGraphData(BarGraphSeries<DataPoint> data) {
 
+        graph.removeAllSeries();
+        graph.clearSecondScale();
         graph.addSeries(data);
     }
 

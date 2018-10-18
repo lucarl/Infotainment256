@@ -1,5 +1,6 @@
 package infotainment.contract;
 
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -8,13 +9,13 @@ public interface StatisticsActivityContract {
     interface View {
 
         void initView();
-        void setGraphData(LineGraphSeries<DataPoint> data);
+        void setGraphData(BarGraphSeries<DataPoint> data);
 
     }
 
     interface Model {
 
-        LineGraphSeries<DataPoint> getGraph();
+        BarGraphSeries<DataPoint> getGraph();
 
     }
 
