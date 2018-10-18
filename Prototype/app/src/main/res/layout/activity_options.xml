@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bakgrund"
     tools:context="infotainment.view.OptionsActivity">
 
     <Button
@@ -12,7 +13,10 @@
         android:layout_height="75dp"
         android:layout_marginStart="425dp"
         android:layout_marginTop="100dp"
+        android:background="@drawable/appbuttons"
         android:text="Colorblind mode"
+        android:textColor="@color/secondary_text"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,8 +24,12 @@
         android:id="@+id/OptionsActivity_btn_back"
         android:layout_width="175dp"
         android:layout_height="75dp"
-        android:layout_marginStart="425dp"
+        android:layout_marginStart="424dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/appbuttons"
         android:text="Back"
+        android:textColor="@color/secondary_text"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/OptionsActivity_btn_colorblindmode" />
 

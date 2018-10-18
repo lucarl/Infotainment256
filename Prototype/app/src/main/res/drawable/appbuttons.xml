@@ -7,7 +7,7 @@
         android:centerColor="@color/icons"
         android:centerX="0"
         android:centerY="100%"
-        android:endColor="@color/primary_dark"
+        android:endColor="@color/accent"
         android:gradientRadius="5dp"
         android:startColor="@color/primary_dark"
         android:type="sweep"
@@ -21,6 +21,6 @@
         android:height="60dp"
         />
     <stroke
-        android:width="3dp"
-        android:color="@color/primary_text" />
+        android:width="2dp"
+        android:color="@color/primary_dark" />
 </shape>
