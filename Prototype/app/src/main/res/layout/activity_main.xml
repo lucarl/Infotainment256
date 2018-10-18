@@ -15,9 +15,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="Start"
+        app:layout_constraintHorizontal_bias="0.500"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteY="173dp" />
 
     <TextView
@@ -45,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startButton"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:srcCompat="@drawable/green_thumb" />
 
     <Button
         android:id="@+id/optionsButton"
