@@ -10,19 +10,19 @@
 
     <Button
         android:id="@+id/startButton"
-        style="@android:style/Widget.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@android:style/Widget.Button.Toggle"
+        android:layout_width="156dp"
+        android:layout_height="150dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/mainbutton"
-        android:text="Start"
+        android:layout_marginBottom="180dp"
+        android:background="@mipmap/ic_launcher_foreground"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/startTextView" />
 
     <TextView
         android:id="@+id/startTextView"
@@ -32,22 +32,22 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Please press start"
+        android:text="Please press startbutton"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155" />
+        app:layout_constraintVertical_bias="0.077" />
 
     <ImageView
         android:id="@+id/MainActivity_iv_colorblindmode"
         android:layout_width="121dp"
         android:layout_height="122dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startButton"
         app:srcCompat="@drawable/green_thumb" />
 
     <Button

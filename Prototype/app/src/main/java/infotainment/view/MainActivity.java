@@ -132,8 +132,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                 "#ffcc52","#ffbf4c","#ffb247","#ffa642","#ff993d","#ff8c38","#ff8033","#ff732e","#ff6629",
                 "#ff5924","#ff4d1f","#ff401a","#ff3314","#ff260f","#ff190a","#ff0d05","#ff0000"};
 
-        Random rand = new Random();
-        fargVal = rand.nextInt(colArr.length);
+        //Random rand = new Random();
+        //fargVal = rand.nextInt(colArr.length);
+
         final View cl = findViewById(R.id.v);
         final ImageView iv = findViewById(R.id.MainActivity_iv_colorblindmode);
         if (colorBlindMode) {
