@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
     @Override
     public void setViewData(String data) {
-        statisticsButton = findViewById(R.id.helpButton);
+        statisticsButton = findViewById(R.id.statisticsButton);
         Clayout = findViewById(R.id.v);
         resultTextView = findViewById(R.id.startTextView);
         helloButton = findViewById(R.id.startButton);
