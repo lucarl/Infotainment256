@@ -35,11 +35,6 @@ public class LogDb implements Db
 
             /* Currently used to reset database tables each run */
             helper.onUpgrade(getDbInstance(), 1, 1);
-
-            Db.insertData(new Pair<>(EntryType.RPM, 5));
-            Db.insertData(new Pair<>(EntryType.RPM, 10));
-            Db.insertData(new Pair<>(EntryType.RPM, 15));
-            Db.insertData(new Pair<>(EntryType.RPM, 20));
         }
     }
 
