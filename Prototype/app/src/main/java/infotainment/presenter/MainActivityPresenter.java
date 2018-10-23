@@ -55,7 +55,6 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
     private static final int speedDataPermissionMagicNumber = 42;
     private Context context;
 
-    double resArr[] = new double[10];   //storleken bestämmer hur stor snittet är i ecoCal
     double ecoPointsRef;
     double lambda;
     double tilt;
@@ -66,7 +65,7 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
 
     int testSpeed = 10;
     int testGear = 1;
-    int testRPM = 1000;
+    int testRPM = 10;
     int variation = 1;
 
     public MainActivityPresenter(MainActivityContract.View view, Context context) {
@@ -83,12 +82,12 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
         mModel = new MainActivityModel();
         mView.initView();
 
-        this.ecoPointsRef = 36;             //Ansatt referensvärde
-        Arrays.fill(resArr, ecoPointsRef);
+
+
         this.lambda = 10;                   //  l/100km
         this.tilt = 0;                    //grader lutning
 
-        mModel.setecoCal(lambda, tilt, resArr, ecoPointsRef);
+        mModel.setecoCal(lambda, tilt);
 
         dataFilter = new DataFilter();
 
@@ -312,7 +311,7 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
 
     //samlingsplats för skickandet av data från timern
     private void testUpdater(){
-        mModel.setecoCal(lambda, tilt, resArr, ecoPointsRef);
+        mModel.setecoCal(lambda, tilt);
         //skickar relevant data till filtret
         //dataFilter.dataInput(Db.EntryType.RPM, testRPM);
 
