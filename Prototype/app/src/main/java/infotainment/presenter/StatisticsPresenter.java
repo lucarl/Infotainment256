@@ -30,7 +30,7 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
             public void run() {
                 onUpdate();
             }
-        }, 2000, 800);
+        }, 0, 800);
     }
 
     /** Update logic for graph
