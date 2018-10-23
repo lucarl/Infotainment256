@@ -1,5 +1,6 @@
 package infotainment.Model;
 
+import android.graphics.Color;
 import android.util.Pair;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -36,6 +37,26 @@ public class StatisticsActivityModel implements StatisticsActivityContract.Model
 
         BarGraphSeries<DataPoint> barGraphSeries = new BarGraphSeries<>();
         barGraphSeries.resetData(dpArray);
+
+        barGraphSeries.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+            @Override
+            public int get(DataPoint data) {
+                if (data.getY() > 80)
+                    return Color.rgb(50, 255, 50);
+
+                else if (data.getY() > 70)
+                    return Color.rgb(80, 225, 50);
+
+                else if (data.getY() > 60)
+                    return Color.rgb(200, 120, 50);
+
+                else if (data.getY() > 50)
+                    return Color.rgb(225, 100, 50);
+
+                else
+                    return Color.rgb(255, 50, 50);
+            }
+        });
 
         return barGraphSeries;
     }
