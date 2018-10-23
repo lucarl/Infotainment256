@@ -41,7 +41,7 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
         graph.getViewport().setMinX(-1);
         graph.getViewport().setMaxX(12);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(12);
+        graph.getViewport().setMaxY(20);
         graph.getGridLabelRenderer().setHorizontalAxisTitle("Time");
         graph.getGridLabelRenderer().setVerticalAxisTitle("EcoScore");
     }

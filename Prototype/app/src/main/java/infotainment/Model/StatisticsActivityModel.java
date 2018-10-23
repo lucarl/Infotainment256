@@ -42,13 +42,13 @@ public class StatisticsActivityModel implements StatisticsActivityContract.Model
         barGraphSeries.resetData(dpArray);
 
         barGraphSeries.setValueDependentColor(data -> {
-            if (data.getY() > 8)
+            if (data.getY() > 16)
                 return Color.rgb(50, 255, 50);
 
-            else if (data.getY() > 6)
+            else if (data.getY() > 12)
                 return Color.rgb(100, 200, 60);
 
-            else if (data.getY() > 4)
+            else if (data.getY() > 8)
                 return Color.rgb(225, 100, 50);
 
             else
