@@ -45,7 +45,7 @@ public class LogDb implements Db
     protected static Cursor query(String tableName, String sortByColumn)
     {
         /* How you want the results sorted in the resulting Cursor */
-        String sortOrder = sortByColumn + " DESC";
+        String sortOrder = sortByColumn + " DESC limit 12";
 
         /* Query of all items in column descending */
         return  getDbInstance().query(
@@ -71,8 +71,8 @@ public class LogDb implements Db
                     cursor.getColumnIndexOrThrow(LogDbContract.rpmEntry.COLUMN_NAME_RPM));
             LocalDateTime itemldt = LocalDateTime.parse(cursor.getString(cursor.getColumnIndexOrThrow(
                                                         LogDbContract.rpmEntry.COLUMN_NAME_DATETIME)));
-            if (!itemldt.isBefore(startDateTime))
-                list.add(new Pair<>(itemId.intValue(), itemldt));
+            //if (!itemldt.isBefore(startDateTime))
+            list.add(new Pair<>(itemId.intValue(), itemldt));
         }
 
         cursor.close();
@@ -92,8 +92,8 @@ public class LogDb implements Db
             LocalDateTime itemldt = LocalDateTime.parse(cursor.getString(cursor.getColumnIndexOrThrow(
                     LogDbContract.ecoEntry.COLUMN_NAME_DATETIME)));
 
-            if (!itemldt.isBefore(startDateTime))
-                list.add(new Pair<>(itemId, itemldt));
+            //if (!itemldt.isBefore(startDateTime))
+            list.add(new Pair<>(itemId, itemldt));
         }
 
         cursor.close();
