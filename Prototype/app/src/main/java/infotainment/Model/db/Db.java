@@ -3,7 +3,6 @@ package infotainment.Model.db;
 import android.content.ContentValues;
 import android.util.Pair;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import infotainment.contract.LogDbContract;
 
@@ -53,10 +52,10 @@ public interface Db
                         "into '" + entry.first + "' failed"); }
     }
 
-    /** @param startPeriod TODO To hold a way of matching time frame with datetime
-     *  @return List with entry data for specified time frame, descending order
+    /** @return List with entry data for specified time frame, descending order
+     * @param startPeriod TODO To hold a way of matching time frame with datetime
      */
-    static List<Pair<Integer, LocalDateTime>> getData(char entryType, LocalDateTime dateTimeStart)
+    static List getData(char entryType, LocalDateTime dateTimeStart)
     {
 
         switch (entryType){
@@ -67,7 +66,7 @@ public interface Db
 
             case EntryType.ECOSCORE:
                 return LogDb.ecoCursorList(LogDb.query(LogDbContract.ecoEntry.TABLE_NAME,
-                        LogDbContract.ecoEntry.COLUMN_NAME_ECOSCORE), dateTimeStart);
+                        LogDbContract.ecoEntry.COLUMN_NAME_DATETIME), dateTimeStart);
 
             default:
                 throw new IllegalArgumentException("get of value type '" + entryType

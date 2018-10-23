@@ -315,8 +315,12 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
     private void testUpdater(){
         mModel.setecoCal(lambda, tilt);
         //skickar relevant data till filtret
-        dataFilter.dataInput('r', testRPM);
-        dataFilter.dataInput('e', (int)ecoPointsRef);
+        //dataFilter.dataInput(Db.EntryType.RPM, testRPM);
+
+        /* DataFilter needs to be tweaked in order for it to work here... */
+        
+        //dataFilter.dataInput(Db.EntryType.ECOSCORE, mModel.getecoCal());
+        Db.insertData(new Pair<>(Db.EntryType.ECOSCORE, mModel.getecoCal()));
         mView.setColor(mModel.getecoCal());
     }
 

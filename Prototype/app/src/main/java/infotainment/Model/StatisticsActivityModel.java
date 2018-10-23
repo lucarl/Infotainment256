@@ -12,7 +12,7 @@ import java.util.List;
 import infotainment.Model.db.Db;
 import infotainment.contract.StatisticsActivityContract;
 
-public class StatisticsActivityModel implements StatisticsActivityContract.Model, ValueDependentColor
+public class StatisticsActivityModel implements StatisticsActivityContract.Model
 {
     /* Tweak this one for nice graph sizes */
     private static int X_SIZE = 12;
@@ -22,52 +22,41 @@ public class StatisticsActivityModel implements StatisticsActivityContract.Model
      */
     public BarGraphSeries<DataPoint> getGraph(char EntryType)
     {
-        List<Pair<Integer, LocalDateTime>> inList = Db.getData(EntryType,
+        List inList = Db.getData(EntryType,
                                                             Db.cTimeMinusMinutes(1));
         DataPoint[] dpArray = new DataPoint[inList.size()];
         DataPoint dp;
         Collections.reverse(inList);
 
         int i = 0;
-        for (Pair<Integer, LocalDateTime> p : inList)
+        for (Object p : inList)
         {
-            dp = new DataPoint(i, p.first);
-            dpArray[i++] = dp;
+            if (p instanceof Pair)
+            {
+                dp = new DataPoint(i, (Integer) ((Pair) p).first);
+                dpArray[i++] = dp;
+            }
         }
 
         BarGraphSeries<DataPoint> barGraphSeries = new BarGraphSeries<>();
         barGraphSeries.resetData(dpArray);
 
-        barGraphSeries.setValueDependentColor(new ValueDependentColor<DataPoint>() {
-            @Override
-            public int get(DataPoint data) {
-                if (data.getY() > 80)
-                    return Color.rgb(50, 255, 50);
+        barGraphSeries.setValueDependentColor(data -> {
+            if (data.getY() > 16)
+                return Color.rgb(50, 255, 50);
 
-                else if (data.getY() > 70)
-                    return Color.rgb(80, 225, 50);
+            else if (data.getY() > 12)
+                return Color.rgb(100, 200, 60);
 
-                else if (data.getY() > 60)
-                    return Color.rgb(200, 120, 50);
+            else if (data.getY() > 8)
+                return Color.rgb(225, 100, 50);
 
-                else if (data.getY() > 50)
-                    return Color.rgb(225, 100, 50);
-
-                else
-                    return Color.rgb(255, 50, 50);
-            }
+            else
+                return Color.rgb(255, 50, 50);
         });
 
         return barGraphSeries;
     }
-
-    /** TODO change bar color
-     *  @param data
-     *  @return
-     */
-    @Override
-    public int get(DataPointInterface data)
-    { return 0; }
 
     /** @return x-size of graph
      */

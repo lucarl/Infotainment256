@@ -4,8 +4,6 @@ import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import infotainment.Model.DataFilter;
 import infotainment.Model.StatisticsActivityModel;
 import infotainment.Model.db.Db;
 import infotainment.contract.StatisticsActivityContract;
@@ -14,7 +12,6 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
 
     private StatisticsActivityContract.View statisticsView;
     private StatisticsActivityContract.Model statisticsModel;
-    private static int tempMakeItWorkINT = 0;
 
     public StatisticsPresenter(StatisticsActivityContract.View view) {
         statisticsView = view;
@@ -33,18 +30,7 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
             public void run() {
                 onUpdate();
             }
-        }, 2000, 500);
-
-        /* Just code to make things happen until we get some real values here in master */
-        DataFilter dataFilter = new DataFilter();
-
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                dataFilter.dataInput(Db.EntryType.ECOSCORE, tempMakeItWorkINT);
-                tempMakeItWorkINT += 1;
-            }
-        },0, 50);
+        }, 2000, 800);
     }
 
     /** Update logic for graph

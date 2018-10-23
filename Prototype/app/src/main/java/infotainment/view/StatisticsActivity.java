@@ -37,7 +37,13 @@ public class StatisticsActivity extends AppCompatActivity implements StatisticsA
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE);
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graph.getViewport().setXAxisBoundsManual(true);
-        graph.getViewport().setMinX(0);
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinX(-1);
+        graph.getViewport().setMaxX(12);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(20);
+        graph.getGridLabelRenderer().setHorizontalAxisTitle("Time");
+        graph.getGridLabelRenderer().setVerticalAxisTitle("EcoScore");
     }
 
     /** @param data Add the data series to the graph, but first a weird clear loop required to keep
