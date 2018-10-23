@@ -10,6 +10,12 @@ import infotainment.contract.LogDbContract;
  */
 public interface Db
 {
+    interface GraphTweak {
+        /* Tweak this one for nice graph sizes */
+        int X_SIZE = 300;
+        int X_SPACING =  -5;
+
+    }
     /** Supported types and their char codes
      */
      interface EntryType {

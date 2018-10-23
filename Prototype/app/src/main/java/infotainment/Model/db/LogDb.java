@@ -10,6 +10,7 @@ import java.io.NotActiveException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 import infotainment.contract.LogDbContract;
 
 /** This class handles the database querying logic from the Db Interface
@@ -45,7 +46,7 @@ public class LogDb implements Db
     protected static Cursor query(String tableName, String sortByColumn)
     {
         /* How you want the results sorted in the resulting Cursor */
-        String sortOrder = sortByColumn + " DESC limit 12";
+        String sortOrder = sortByColumn + " DESC limit " + GraphTweak.X_SIZE;
 
         /* Query of all items in column descending */
         return  getDbInstance().query(

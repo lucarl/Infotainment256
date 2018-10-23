@@ -39,7 +39,7 @@ public class StatisticsPresenter implements StatisticsActivityContract.Presenter
     public void onUpdate()
     {
         BarGraphSeries<DataPoint> graph = statisticsModel.getGraph(Db.EntryType.ECOSCORE);
-        graph.setSpacing(5);
+        graph.setSpacing(Db.GraphTweak.X_SPACING);
         statisticsView.setGraphData(graph);
         statisticsView.setGraphMaxX(statisticsModel.getGraphMaxX());
     }

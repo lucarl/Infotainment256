@@ -2,11 +2,10 @@ package infotainment.Model;
 
 import android.graphics.Color;
 import android.util.Pair;
-import com.jjoe64.graphview.ValueDependentColor;
+
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.DataPointInterface;
-import java.time.LocalDateTime;
+
 import java.util.Collections;
 import java.util.List;
 import infotainment.Model.db.Db;
@@ -14,9 +13,6 @@ import infotainment.contract.StatisticsActivityContract;
 
 public class StatisticsActivityModel implements StatisticsActivityContract.Model
 {
-    /* Tweak this one for nice graph sizes */
-    private static int X_SIZE = 12;
-
     /** @return Special list of x,y points.
      *  Queries database for entries the last minutes and returns it in the right format.
      */
@@ -61,5 +57,5 @@ public class StatisticsActivityModel implements StatisticsActivityContract.Model
     /** @return x-size of graph
      */
     public int getGraphMaxX()
-    { return X_SIZE; }
+    { return Db.GraphTweak.X_SIZE; }
 }
