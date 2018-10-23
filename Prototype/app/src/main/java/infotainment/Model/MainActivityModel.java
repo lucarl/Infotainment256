@@ -9,9 +9,9 @@ import infotainment.contract.MainActivityContract;
 public class MainActivityModel implements MainActivityContract.Model{
 
     private int ecoCal;
-    private int ecoPointsRef = 45;             //Ansatt referensvärde
+    public static int ecoPointsRef = 80;             //Ansatt referensvärde
 
-    private double resArr[] = new double[50];   //storleken bestämmer hur stor snittet är i ecoCal
+    private double resArr[] = new double[6];   //storleken bestämmer hur stor snittet är i ecoCal
 
     private int temp=0;
 

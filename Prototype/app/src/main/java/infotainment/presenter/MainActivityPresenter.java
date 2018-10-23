@@ -32,6 +32,8 @@ import infotainment.Model.db.LogDb;
 import infotainment.contract.LogDbContract;
 import infotainment.contract.MainActivityContract;
 
+import static infotainment.Model.MainActivityModel.ecoPointsRef;
+
 public class MainActivityPresenter extends AppCompatActivity implements MainActivityContract.Presenter {
 
     private MainActivityContract.View mView;
@@ -55,7 +57,7 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
     private static final int speedDataPermissionMagicNumber = 42;
     private Context context;
 
-    double ecoPointsRef;
+
     double lambda;
     double tilt;
 
@@ -280,7 +282,7 @@ public class MainActivityPresenter extends AppCompatActivity implements MainActi
                         }
 
                         //the "oh shit" catch
-                        if(lambda>30){
+                        if(lambda>ecoPointsRef/2){
                             variation = 2;
                         } else {
                             variation = 1;
