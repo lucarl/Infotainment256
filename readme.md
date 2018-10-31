@@ -2,10 +2,10 @@
 ##### DAT 255, 2018
 
 ### Team Members
-Member | Rasmus C. | name | name | name | name | name
+Member | Rasmus C. | Sigbjørn. | name | name | name | name
 --- | --- | --- | --- | --- | --- | ---
-Github | `claesen` | git | git | git | git | git
-Individual Reflections | `reflection-weeks-claesen` & `reflection-summary-claesen` | val | val | val | val | val
+Github | `claesen` | `Sigbear` | git | git | git | git
+Individual Reflections | `reflection-weeks-claesen` & `reflection-summary-claesen` | `Sigbjørn Reflection Week x` & `Sigbjørn Reflection Summary` | val | val | val | val
 
 ## Reflections are found under Documents /
 #### Individual reflection
