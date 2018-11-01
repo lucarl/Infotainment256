@@ -1,16 +1,17 @@
-# Eco-Performance androidCAR app
-##### DAT 255, 2018
+# EcoDrive androidCAR application
+### DAT 256, 2018
 
 ### Team Members
-Member | Rasmus C. | Sigbjørn. | Thomas Frödin Larsson | name | name | name
---- | --- | --- | --- | --- | --- | ---
-Github | `claesen` | `Sigbear` | `frodin` | git | git | git
-Individual Reflections | `reflection-weeks-claesen` & `reflection-summary-claesen` | `Sigbjørn Reflection Week x` & `Sigbjørn Reflection Summary` | val | val | val | val
+Member | Git username | Git nickname
+-- | -- |
+Rasmus Claesen | `Claesen` | `racl`, `Unknown`
+Sigbjørn Drøsshaug | `Sigbear` | ?
+Thomas Frödin Larsson | `frodin`| ?
+Carl Lundborg | `lucarl` | ?
+Eric Mossberg | `Emberg`| ?
+Niclas Tauson | `tniclas` | ?
 
 ## Reflections are found under Documents /
-#### Individual reflection
-#### Team reflection
-#### Timelog and our user-stories draft iterations are found here as well
-
-# Runnability of code
-works, a how-to?
+#### Individual reflection / -'Name'
+#### Team reflection / -Separate pdf's for each week & final report   
+#### Documents / -KPI's, user-stories etc
