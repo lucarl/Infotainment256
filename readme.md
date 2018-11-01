@@ -3,7 +3,7 @@
 
 ### Team Members
 Member | Git username | Git nickname
--- | -- |
+--- | --- | ---
 Rasmus Claesen | `Claesen` | `racl`, `Unknown`
 Sigbjørn Drøsshaug | `Sigbear` | ?
 Thomas Frödin Larsson | `frodin`| ?
